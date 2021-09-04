@@ -7,6 +7,12 @@ public class PlayerMovement : MonoBehaviour
     private float _horizontalInput = 0;
     private float _verticalInput = 0;
     public int moveSpeed;
+
+    public Rigidbody2D rb;
+    Vector2 movement;
+    Vector2 mousePos;
+    public Camera cam;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,17 +22,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetPlayerInput();
-        MovePlayer();
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
-    private void GetPlayerInput()
+
+    private void FixedUpdate()
     {
-        _horizontalInput = Input.GetAxisRaw("Horizontal");
-        _verticalInput = Input.GetAxisRaw("Vertical");
-    }
-    private void MovePlayer()
-    {
-        Vector3 directionVector = new Vector3(_horizontalInput, _verticalInput, 0);
-        transform.Translate(directionVector.normalized * Time.deltaTime * moveSpeed);
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        Vector2 lookDir = mousePos - rb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        rb.rotation = angle;
     }
 }
