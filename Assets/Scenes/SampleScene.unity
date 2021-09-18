@@ -960,7 +960,6 @@ MonoBehaviour:
   - {fileID: 1776330548}
   - {fileID: 1481730586}
   - {fileID: 1580309109}
-  enemy: {fileID: 0}
 --- !u!4 &1770076058
 Transform:
   m_ObjectHideFlags: 0
@@ -1194,6 +1193,10 @@ PrefabInstance:
     - target: {fileID: 3264111417420489383, guid: e2c0659e75a3f6546aad99ad6c559f85, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3264111417420489383, guid: e2c0659e75a3f6546aad99ad6c559f85, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2c0659e75a3f6546aad99ad6c559f85, type: 3}

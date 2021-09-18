@@ -24,5 +24,17 @@ public class Observer : MonoBehaviour
                 ene.angry = true;
             }
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //Debug.Log("amogus");
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                if (!enemies[i].activeSelf)
+                {
+                    ene = enemies[i].GetComponent<Enemy>();
+                    enemies[i].SetActive(true);
+                }
+            }
+        }
     }
 }

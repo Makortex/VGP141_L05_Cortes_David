@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public GameObject observer;
     private Observer obs;
 
-
+    public float health = 3;
     public float time;
     public float bulletForce = 20f;
     public float moveSpeed = 0.2f;
@@ -39,6 +39,10 @@ public class Enemy : MonoBehaviour
                 Shoot();
             }
         }
+        if (health <= 0)
+        {
+            Die();
+        }
     }
     void RotateTowards(Vector2 target)
     {
@@ -55,6 +59,7 @@ public class Enemy : MonoBehaviour
         {
             //angry = true;
             obs.notified = true;
+            health--;
         }
     }
     void Shoot()
@@ -69,4 +74,9 @@ public class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
     }
 
+    void Die()
+    {
+        gameObject.SetActive(false);
+        health = 3;
+    }
 }
